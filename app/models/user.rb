@@ -26,8 +26,7 @@ has_many :events, through: :event_participants
     private
     def validate_username
         unless username =~ /\A[a-zA-Z0-9_]+\Z/
-            errors.add(:username, "Can only contain letters and numbers, at least one letter or number")
-    
+            errors.add(:username, "Can only contain letters, numbers, and underscores and at least one letter or number")
         end
     end
 end

@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-    def index
-        
-    end
+    # protect_from_forgery with: :exception
+    # protect_from_forgery unless: -> { request.format.json? }
+    skip_before_action :verify_authenticity_token
+    # def index
+    # end
 end

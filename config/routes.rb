@@ -1,20 +1,26 @@
 Rails.application.routes.draw do
-  # localhost:3000/users
-  # Go to users_controller.rb and look for index method
-  get '/users', to: 'users#index'
+#   # localhost:3000/users
+#  # Go to users_controller.rb and look for index method
+#   get '/users', to: 'users#index'
   
-  # localhost:3000/users/1
-  get '/users/:id', to: 'users#show'
+#   # localhost:3000/users/1
+#   get '/users/:id', to: 'users#show'
   
-  # localhost:3000/users/1/posts
-  post '/users', to: 'users#create'
+#   # localhost:3000/users/1/posts
+#   post '/users', to: 'users#create'
 
-  # localhost:3000/users/1
-  put '/users/:id', to: 'users#update'
+#   # localhost:3000/users/1
+#   put '/users/:id', to: 'users#update'
 
-  # localhost:3000/users/1
-  delete '/users/:id', to: 'users#destroy'
-
+#   # localhost:3000/users/1
+#   delete '/users/:id', to: 'users#destroy'
+# end
+#------Customized Route---------
+  resources :users do
+  get 'posts', to: 'users#posts_index'
+  end
+#-----------------------------------------
+  resources :posts
 end
 #--------------------------------------------------------------------------
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
