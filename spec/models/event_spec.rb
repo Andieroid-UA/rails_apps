@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
+
   context 'validation tests' do
     it 'is not valid without a user' do
       event = build(:event, user: nil)
@@ -44,6 +45,16 @@ RSpec.describe Event, type: :model do
     event.reload
     expect(event.sports.count).to eq(3)
   end
+end
 
+context "destroy related associations" do
+  it "destroy event participants" do
+    event = create(:event)
+    event_id = event.id
+    event.destroy
+    event_participants = EventParticipant.where(event_id: event.id)
+    expect(event_participants).to be_empty
   end
+
+end
 end
