@@ -43,6 +43,7 @@ gem "bootsnap", require: false
 
 #----- added with bcrypt class 2-12-24 -----------------------------
 gem "bcrypt", "~> 3.1.7"
+gem 'jwt'
 # ------------------------------------------------------------------
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

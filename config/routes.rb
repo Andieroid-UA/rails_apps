@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 #   # localhost:3000/users
 #  # Go to users_controller.rb and look for index method
 #   get '/users', to: 'users#index'
-  
+
 #   # localhost:3000/users/1
 #   get '/users/:id', to: 'users#show'
-  
+
 #   # localhost:3000/users/1/posts
 #   post '/users', to: 'users#create'
 
@@ -16,10 +16,15 @@ Rails.application.routes.draw do
 #   delete '/users/:id', to: 'users#destroy'
 # end
 #------Customized Route (Updated 2-8-24)---------
+  get 'sessions/create'
+  scope '/' do
+    post 'login', to: 'sessions#create'
+  end
+
   resources :events
   resources :posts
   resources :users do
-  get 'posts', to: 'users#posts_index'
+    get 'posts', to: 'users#posts_index'
   end
 end
 #--------------------------------------------------------------------------
