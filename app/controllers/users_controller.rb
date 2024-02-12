@@ -28,7 +28,7 @@ def update
   else
     render json: @user.errors, status: :unprocessable_entity
   end
-end  
+end
 
 def destroy
   if @user.destroy
@@ -52,6 +52,6 @@ def set_user
 end
 
 def user_params
-  params.permit(:username, :email, :first_name, :last_name)
+  params.permit(:username, :email, :first_name, :last_name, :password, :password_confirmation)
   end
 end
