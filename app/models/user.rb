@@ -21,6 +21,8 @@ has_one :profile, dependent: :destroy
 has_many :comments, dependent: :destroy
 has_one :location, as: :locationable, dependent: :destroy
 
+after_create :create_profile
+
 # events that the user has created
 has_many :created_events, class_name: 'Event', foreign_key: 'user_id'
 

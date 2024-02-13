@@ -42,8 +42,9 @@ gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 
 #----- added with bcrypt class 2-12-24 -----------------------------
-gem "bcrypt", "~> 3.1.7"
+gem "bcrypt"
 gem 'jwt'
+gem 'blueprinter'
 # ------------------------------------------------------------------
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
