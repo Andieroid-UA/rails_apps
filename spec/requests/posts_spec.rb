@@ -2,14 +2,17 @@ require 'rails_helper'
 
 RSpec.describe "Posts", type: :request do
   describe "GET /posts" do
+    let(:user) { create(:user) }
+    let(:token) { auth_token_for_user(user) }
+
     let(:post) { create(:post) }
 
     before do
       # creating the post
       post
-      get "/posts"
+      get "/posts", headers: { Authorization: "Bearer #{token}"}
     end
-  
+
     # returns a successful response
     it "returns a successful response" do
       expect(response).to be_successful
@@ -24,9 +27,11 @@ RSpec.describe "Posts", type: :request do
   # show
   describe "GET /post/:id" do
     let(:post) { create(:post) }
+    let(:user) { create(:user) }
+    let(:token) { auth_token_for_user(user) }
 
     before do
-      get "/posts/#{post.id}"
+      get "/posts/#{post.id}", headers: { Authorization: "Bearer #{token}"}
     end
 
     # successful response
@@ -42,15 +47,17 @@ RSpec.describe "Posts", type: :request do
 
   # create
   describe "POST /posts" do
+  let(:user) { create(:user) }
+  let(:token) { auth_token_for_user(user) }
+
     # valid params
     context "with valid params" do
-      let(:user) { create(:user)}
 
       before do
         post_attributes = attributes_for(:post, user_id: user.id)
-        post "/posts", params: post_attributes
+        post "/posts", params: post_attributes, headers: { Authorization: "Bearer #{token}"}
       end
-      
+
       # returns a successful response
       it "returns a successful response" do
         expect(response).to be_successful
@@ -64,9 +71,10 @@ RSpec.describe "Posts", type: :request do
 
     # invalid params
     context "with invalid params" do
+
       before do
         post_attributes = attributes_for(:post, title: nil)
-        post "/posts", params: post_attributes
+        post "/posts", params: post_attributes, headers: { Authorization: "Bearer #{token}"}
       end
 
       it "returns a response with errors" do
@@ -79,12 +87,15 @@ RSpec.describe "Posts", type: :request do
 
   # update
   describe "PUT /posts/:id" do
+    let(:user) { create(:user) }
+    let(:token) { auth_token_for_user(user) }
+
     context "with valid params" do
       let(:post) {create(:post)}
 
       before do
         post_attributes = attributes_for(:post, content: "updated content")
-        put "/posts/#{post.id}", params: post_attributes
+        put "/posts/#{post.id}", params: post_attributes, headers: { Authorization: "Bearer #{token}"}
       end
 
       it "updates a post" do
@@ -104,7 +115,7 @@ RSpec.describe "Posts", type: :request do
 
       before do
         post_attributes = {content: nil}
-        put "/posts/#{post.id}", params: post_attributes
+        put "/posts/#{post.id}", params: post_attributes, headers: { Authorization: "Bearer #{token}"}
       end
 
       it "returns a response with errors" do
@@ -116,9 +127,11 @@ RSpec.describe "Posts", type: :request do
   # destroy
   describe "DELETE /posts/:id" do
     let(:post) { create(:post) }
+    let(:user) { create(:user) }
+    let(:token) { auth_token_for_user(user) }
 
     before do
-      delete "/posts/#{post.id}"
+      delete "/posts/#{post.id}", headers: { Authorization: "Bearer #{token}"}
     end
 
     it "deletes a post" do

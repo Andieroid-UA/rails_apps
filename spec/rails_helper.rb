@@ -1,7 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'faker'
-
+require 'support/auth_helpers'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -37,6 +37,7 @@ RSpec.configure do |config|
 # This is what we included in the VIDEO :)
 # -------------------------------------
 config.include FactoryBot::Syntax::Methods
+config.include AuthHelpers, type: :request
 
 # -------------------------------------
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
