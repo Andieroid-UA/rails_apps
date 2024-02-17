@@ -45,6 +45,8 @@ gem "bootsnap", require: false
 gem "bcrypt"
 gem 'jwt'
 gem 'blueprinter'
+gem "rack-cors"
+gem "kaminari"
 # ------------------------------------------------------------------
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]

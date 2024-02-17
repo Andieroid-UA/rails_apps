@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     # Go to routes.rb and look for /posts
     before_action :set_post, only: [:update, :destroy, :show]
-    before_action :authenticate_request
+  #  before_action :authenticate_request
 
     def index
       posts = Post.all
