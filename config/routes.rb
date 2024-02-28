@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'web/bootstrap'
 #   # localhost:3000/users
 #  # Go to users_controller.rb and look for index method
 #   get '/users', to: 'users#index'
